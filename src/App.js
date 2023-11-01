@@ -6,7 +6,7 @@ import OpenSeadragon from'openseadragon';
 function App() {
   const viewerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const imageUrls = ["https://directorsblog.nih.gov/wp-content/uploads/2013/07/kidneycancer2.jpg", "https://media.istockphoto.com/id/531314246/photo/adenocarcinoma.jpg?s=612x612&w=0&k=20&c=y0jJSS8HmIoT93b03FUwy_-Bj0Dr5NzhWyatDrhO2kE="]
+  const imageUrls = ["https://www.researchgate.net/publication/282862344/figure/fig1/AS:284909643677696@1444939160098/Histologic-illustration-of-benign-and-malignant-SFT-A-Benign-SFT-The-tumor-shows-a.png","https://directorsblog.nih.gov/wp-content/uploads/2013/07/kidneycancer2.jpg", "https://media.istockphoto.com/id/531314246/photo/adenocarcinoma.jpg?s=612x612&w=0&k=20&c=y0jJSS8HmIoT93b03FUwy_-Bj0Dr5NzhWyatDrhO2kE="]
 
   useEffect(() => {
     const osdViewer = new OpenSeadragon({
@@ -33,11 +33,13 @@ function App() {
       nextButton: 'next',
       previousButton: 'previous',
     });
-    viewerRef.current = osdViewer;
+    viewerRef.current = osdViewer; 
     
-    
-    
-
+    return () => {
+      if (viewerRef.current) {
+        viewerRef.current.destroy();
+      }
+    };
     
   }, [currentIndex]);
 
@@ -71,7 +73,7 @@ function App() {
           <div id="openseadragon-buttons" className="btn-group" role="group">
             <button className="btn btn-primary mr-2" id="zoom-in" onClick={setZoomInFactor}>Zoom In</button>
             <button className="btn btn-primary mr-2" id="zoom-out">Zoom Out</button>
-            <button className="btn btn-primary mr-2" id="home">Home</button>
+            <button className="btn btn-primary mr-2" id="home">Reset</button>
             <button className="btn btn-primary mr-2" id="full-page">Full Page</button>
             <button className="btn btn-primary mr-2" id="next" onClick={setNextImage}>Next</button>
             <button className="btn btn-primary" id="previous" onClick={setPrevImage}>Previous</button>
