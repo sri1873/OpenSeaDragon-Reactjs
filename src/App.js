@@ -3,10 +3,10 @@ import OpenSeadragon from'openseadragon';
 
 
 
+const imageUrls = ["https://www.researchgate.net/publication/282862344/figure/fig1/AS:284909643677696@1444939160098/Histologic-illustration-of-benign-and-malignant-SFT-A-Benign-SFT-The-tumor-shows-a.png","https://directorsblog.nih.gov/wp-content/uploads/2013/07/kidneycancer2.jpg", "https://media.istockphoto.com/id/531314246/photo/adenocarcinoma.jpg?s=612x612&w=0&k=20&c=y0jJSS8HmIoT93b03FUwy_-Bj0Dr5NzhWyatDrhO2kE="]
 function App() {
   const viewerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const imageUrls = ["https://www.researchgate.net/publication/282862344/figure/fig1/AS:284909643677696@1444939160098/Histologic-illustration-of-benign-and-malignant-SFT-A-Benign-SFT-The-tumor-shows-a.png","https://directorsblog.nih.gov/wp-content/uploads/2013/07/kidneycancer2.jpg", "https://media.istockphoto.com/id/531314246/photo/adenocarcinoma.jpg?s=612x612&w=0&k=20&c=y0jJSS8HmIoT93b03FUwy_-Bj0Dr5NzhWyatDrhO2kE="]
 
   useEffect(() => {
     const osdViewer = new OpenSeadragon({
