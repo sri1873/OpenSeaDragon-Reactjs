@@ -1,6 +1,5 @@
-import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
-import OpenSeadragon from 'openseadragon';
+import OpenSeadragon from'openseadragon';
 
 
 
@@ -10,7 +9,7 @@ function App() {
   const imageUrls = ["https://directorsblog.nih.gov/wp-content/uploads/2013/07/kidneycancer2.jpg", "https://media.istockphoto.com/id/531314246/photo/adenocarcinoma.jpg?s=612x612&w=0&k=20&c=y0jJSS8HmIoT93b03FUwy_-Bj0Dr5NzhWyatDrhO2kE="]
 
   useEffect(() => {
-    const osdViewer = OpenSeadragon({
+    const osdViewer = new OpenSeadragon({
       id: 'openseadragon-viewer',
       prefixUrl: '',
       constrainDuringPan: true,
@@ -35,7 +34,11 @@ function App() {
       previousButton: 'previous',
     });
     viewerRef.current = osdViewer;
+    
+    
+    
 
+    
   }, [currentIndex]);
 
   const setZoomInFactor = () => {
@@ -57,20 +60,25 @@ function App() {
 
 
   return (
-    <>
-
-      <div id="openseadragon-viewer" style={{ height: "400px", width: '100%' }}></div>
-
-      <div id="openseadragon-buttons" className="Panel">
-        <button id="zoom-in" onClick={e => setZoomInFactor()}>Zoom In</button>
-        <button id="zoom-out">Zoom Out</button>
-        <button id="home">Home</button>
-        <button id="full-page">Full Page</button>
-        <button id="next" onClick={e => setNextImage()}>Next</button>
-        <button id="previous" onClick={e => setPrevImage()}>Previous</button>
-        {/* <button onClick={addFabricOverlay}>Add Fabric Overlay</button> */}
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col-12">
+          <div id="openseadragon-viewer" style={{ height: "400px", padding: "10px" , backgroundColor: "black" }} ref={viewerRef}></div>
+        </div>
       </div>
-    </>
+      <div className="row mt-2">
+        <div className="col-12">
+          <div id="openseadragon-buttons" className="btn-group" role="group">
+            <button className="btn btn-primary mr-2" id="zoom-in" onClick={setZoomInFactor}>Zoom In</button>
+            <button className="btn btn-primary mr-2" id="zoom-out">Zoom Out</button>
+            <button className="btn btn-primary mr-2" id="home">Home</button>
+            <button className="btn btn-primary mr-2" id="full-page">Full Page</button>
+            <button className="btn btn-primary mr-2" id="next" onClick={setNextImage}>Next</button>
+            <button className="btn btn-primary" id="previous" onClick={setPrevImage}>Previous</button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
